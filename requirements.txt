@@ -1,7 +1,5 @@
 alabaster==0.7.12
 anaconda-client==1.2.2
-anaconda-navigator==1.9.12
-anaconda-project==0.8.3
 appdirs==1.4.4
 argh==0.26.2
 asn1crypto==1.3.0
@@ -62,7 +60,6 @@ fsspec==0.6.2
 future==0.18.2
 gevent==1.4.0
 glob2==0.7
-graphviz @ file:///home/conda/feedstock_root/build_artifacts/python-graphviz_1594643355048/work
 greenlet==0.4.15
 gunicorn==20.0.4
 h5py==2.10.0
