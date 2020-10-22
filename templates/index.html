@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+    {% block content %}
+            <!--Section: Cards-->
+
+                <!--Grid row-->
+                <div class="row row-cols-4 wow fadeIn">
+                    {% if recdict %}
+                    {% for k, v in recdict.items() %}
+                    <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4 wow fadeIn">
+
+                        <!--Card-->
+                        <div class="card elegant-color">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://image.tmdb.org/t/p/w500/{{ v['url'] }}" class="card-img-top" alt="">
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title text-light"><a class="text-light" href="movie/{{ v['id'] }}">{{ k }}</a> ({{ mf(v['id']).release_date[0:4] }})</h4>
+                                <!--Text-->
+                                <p class="card-text">{{ v['overview'] }}</p>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--Grid column-->
+                    {% endfor %}
+                    {% else %}
+                    {% if success %}<div class="container text-light" style="text-align: center; margin-bottom: 1em;">Couldn't find movies that fit the criterias.</div>{% endif %}
+                    {% for result in search %}
+                                       <!--Grid column-->
+                    <div class="col-lg-4 col-md-6 mb-4 wow fadeIn">
+
+                        <!--Card-->
+                        <div class="card elegant-color">
+
+                            <!--Card image-->
+                            <div class="view overlay">
+                                <img src="https://image.tmdb.org/t/p/w500/{{ result.poster_path }}" class="card-img-top" alt="">
+                            </div>
+
+                            <!--Card content-->
+                            <div class="card-body">
+                                <!--Title-->
+                                <h4 class="card-title text-light"><a class="text-light" href="movie/{{ result.id }}">{{ result }}</a> ({{ mf(result.id).release_date[0:4] }})</h4>
+                                <!--Text-->
+                                <p class="card-text">{{ result.overview }}</p>
+                                </p>
+                            </div>
+
+                        </div>
+                        <!--/.Card-->
+                    </div>
+                    <!--Grid column-->
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            {% endblock %}

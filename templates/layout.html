@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %} - Movie Inspiration</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+
+    <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body class="elegant-color-dark">
+
+    <!--Main Navigation-->
+    <header>
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+            <div class="container">
+                <!-- Collapse -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link waves-effect" href="/">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link waves-effect" href="#">About</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right -->
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link border border-light rounded waves-effect">
+                                <i class="fab fa-github mr-2"></i>GitHub
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </nav>
+        <!-- Navbar -->
+
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main class="mt-5 pt-5 elegant-color-dark">
+        <div class="container">
+
+            <!--Section: Jumbotron-->
+            <section class="card elegant-color wow fadeIn">
+
+                <!-- Content -->
+                <div class="card-body text-white spy-5 px-5 my-5">
+
+                    <h1 class="mb-4">
+                        <strong>Movie Inspiration</strong>
+                    </h1>
+                    <p>
+                        <form action="/" method="POST">
+                            <ul style="list-style: none;" class="mb-4">
+                                <li class="row d-flex"><label for="genres">Genres</label></li>
+                                <li class="row d-flex">
+                                    {% for genre in genres %}
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input name="genre" class="custom-control-input" type="checkbox" id="inlineCheckbox{{ genre['id'] }}" value="{{ genre['id'] }}">
+                                        <label class="custom-control-label" for="inlineCheckbox{{ genre['id'] }}">{{ genre['name'] }}</label>
+                                      </div>
+                                  {% endfor %}
+                                </li>
+                                <li class="row d-flex" style="padding-top: 1em;">
+                                    <div>
+                        <label for="movie" style="display: inline-block; width: 80px; text-align: left;" hidden>Movie</label>
+                        <input class="form-control mb-4" type="text" name="movie" placeholder="Movie" value="{{ request.form['movie'] }}" onfocus="this.value=''">
+                                    <label for="runtime" style="display: inline-block; width: 80px; text-align: left;" hidden>Runtime</label>
+                                    <input class="form-control mb-4" type="text" name="runtime" placeholder="Runtime" value="{{ request.form['runtime'] }}" onfocus="this.value=''">
+                                    <button type="submit" class="btn btn-outline-white btn-lg">Search</button>
+                                </div></li>
+                        </ul>    
+                    </form>
+                <!-- Content -->
+            </section>
+            <hr class="my-5">
+            <div id="content"><section class="text-center">{% block content %}{% endblock %}</section></div>
+
+            
+            <!--Section: Cards-->
+
+
+    </div>
+</main>
+<!--Main layout-->
+
+<!--Footer-->
+<footer class="page-footer text-center font-small elegant-color darken-2 mt-4 wow fadeIn">
+
+    <!-- Social icons -->
+    <div class="pt-4 pb-4">
+        <a href="#">
+            <i class="fab fa-facebook-f mr-3"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-twitter mr-3"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-youtube mr-3"></i>
+        </a>
+
+        <a href="#">
+            <i class="fab fa-github mr-3"></i>
+        </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+        © 2020
+    </div>
+    <!--/.Copyright-->
+
+</footer>
+<!--/.Footer-->
+
+<!-- SCRIPTS -->
+<!-- JQuery -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+<!-- Initializations -->
+<script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+</script>
+</body>
+
+</html>

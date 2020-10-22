@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+    {% block content %}
+      <div class="card-group card elegant-color wow fadeIn">
+        <div class="card col-md-5 elegant-color wow fadeIn" style="box-shadow: none; padding: 0;">
+          <div class="card-body elegant-color"><img src="https://image.tmdb.org/t/p/w500/{{ movie_details.poster_path }}" class="card card-img-top my-img">
+          </div>
+        </div>
+        <div class="card wow elegant-color fadeIn" style="box-shadow: none;">
+          <div class="card-body left1">
+                <h4 class="card-title text-light">{{ movie_details.title }} ({{ movie_details.release_date[0:4] }})</h4>
+                <p class="card-text text-light">{{ movie_details.overview}}</p>
+              <p class="card-text">{% for genre in movie_details.genres %}
+                {{ genre['name'] }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+              </p>
+              <p class="card-text">
+                Vote average: {{ movie_details.vote_average }}
+              </p>
+              <p class="card-text">Runtime: {{ movie_details.runtime }} minutes</p>
+         </div>
+      </div>
+      </div>
+      <hr class="my-5">
+    <div class="row row-cols-4 wow fadeIn">
+      {% for member in credits.cast %}
+      {% if member.profile_path %}
+      <div class="col-lg-3 col-md-6 mb-4 wow fadeIn">
+        <div class="card">
+          <div class="view overlay">
+              <img src="https://image.tmdb.org/t/p/w500/{{ member.profile_path }}" class="card-img-top" alt="{{ member.name }}">
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">{{ member.name }}</h4>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+      </div>
+      <div class="page-footer text-center font-small elegant-color darken-2 mt-4 wow fadeIn">
+        <p class="text-light pt-4 pb-4">You might also like</p>
+      </div>
+      <div class="row row-cols-4 wow fadeIn">
+        {% for rec in recommendations %}
+        {% if loop.index <= 4 %}
+        <div class="col-lg-3 col-md-6 mb-4 wow fadeIn">
+          <div class="card elegant-color">
+            <div class="view overlay">
+                <img src="https://image.tmdb.org/t/p/w500/{{ rec.poster_path }}" class="card-img-top" alt="{{ rec.title }}">
+            </div>
+            <div class="card-body">
+              <p class="card-title text-light"><a class="text-light" href="{{ rec.id }}">{{ rec.title }} ({{ rec.release_date[0:4] }})</a></p>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endblock %}
