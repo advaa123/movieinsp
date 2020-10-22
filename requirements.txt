@@ -109,7 +109,7 @@ six==1.15.0
 smmap==3.0.4
 sqlfluff==0.3.6
 stevedore==3.2.2
-traitlets==5.0.4
+traitlets==4.3.3
 typed-ast==1.4.1
 typing-extensions==3.7.4.3
 urllib3==1.25.10
