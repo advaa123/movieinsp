@@ -87,3 +87,7 @@ def get_movie(movie = None):
         
 
     return render_template('index.html', recdict=recdict, genres=genres, mf=Movie().details)
+
+
+if __name__ == '__main__':
+    app.run(threaded=True, port=5000)
